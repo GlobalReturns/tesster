@@ -1,4 +1,5 @@
 _G.SAEnabled = true
+local Players = game:GetService("Players")
 -- // Vars
 local LocalPlayer = Players.LocalPlayer
 local accomidationfactor = 0.15537
