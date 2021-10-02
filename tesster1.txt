@@ -1,11 +1,13 @@
 _G.SAEnabled = true
+-- // Services
 local Players = game:GetService("Players")
+
 -- // Vars
 local LocalPlayer = Players.LocalPlayer
 local accomidationfactor = 0.15537
 
 -- // Silent Aim Module
-local SilentAim = loadstring(game:HttpGet("https://raw.githubusercontent.com/GlobalReturns/tesster/main/tesster.txt"))()
+local SilentAim = loadstring(game:HttpGet("https://raw.githubusercontent.com/progamerflood99/FloodsRevLock/main/adjust"))()
 SilentAim.TeamCheck = false
 
 -- // Metatable vars
@@ -39,7 +41,7 @@ mt.__index = newcclosure(function(t, k)
     if (t:IsA("Mouse") and (k == "Hit")) then
         
         local CPlayer = SilentAim.Selected
-        if (SilentAim.checkSilentAim()) and _G.SAEnabled then
+        if (SilentAim.checkSilentAim()) then _G.SAEnabled then
             if (CPlayer.Character:FindFirstChild("UpperTorso")) then
                 return {p=(CPlayer.Character.UpperTorso.CFrame.p+(CPlayer.Character.UpperTorso.Velocity*accomidationfactor))}
             end
