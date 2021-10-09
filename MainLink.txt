@@ -1,4 +1,20 @@
+_G.SAEnabled = true
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/GlobalReturns/tesster/main/Link.txt"))()
+
+local UserInputService = game:GetService("UserInputService")
+
+UserInputService.InputEnded:Connect(function(input, gameProcessed)
+    if input.UserInputType == Enum.UserInputType.Keyboard then
+        local keyPressed = input.KeyCode
+        if keyPressed.Name == 'RightBracket' then
+            Aiming.FOV = Aiming.FOV + 1
+        end
+        if keyPressed.Name == 'LeftBracket' then
+            Aiming.FOV = Aiming.FOV - 1
+        end
+    end
+end)
+-- // Mains
 Aiming.TeamCheck(false)
 
 local Workspace = game:GetService("Workspace")
@@ -36,7 +52,7 @@ end
 
 local __index
 __index = hookmetamethod(game, "__index", function(t, k)
-    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
+    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then _G.SAEnabled then
         local SelectedPart = Aiming.SelectedPart
 
         if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
@@ -57,4 +73,30 @@ RunService:BindToRenderStep("AimLock", 0, function()
 
         CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
     end
+end)
+-- // Revert
+setreadonly(mt, true)
+-- // Mains
+game:GetService("UserInputService").InputBegan:connect(function(input)
+if input.KeyCode == Enum.KeyCode.V then
+_G.SAEnabled = true
+end
+end)
+--
+game:GetService("UserInputService").InputBegan:connect(function(input)
+if input.KeyCode == Enum.KeyCode.C then
+_G.SAEnabled = false
+end
+end)
+-- // Fov
+game:GetService("UserInputService").InputBegan:connect(function(input)
+if input.KeyCode == Enum.KeyCode.Minus then
+Aiming.ShowFOV = Aiming.ShowFOV == true
+end
+end)
+--
+game:GetService("UserInputService").InputBegan:connect(function(input)
+if input.KeyCode == Enum.KeyCode.Equals then
+Aiming.ShowFOV = Aiming.ShowFOV == false
+end
 end)
