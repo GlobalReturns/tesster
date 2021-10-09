@@ -1,5 +1,4 @@
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/GlobalReturns/tesster/main/Link.txt"))()
-Aiming.TeamCheck(false)
 
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
