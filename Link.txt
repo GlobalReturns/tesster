@@ -406,15 +406,7 @@ Heartbeat:Connect(function()
     Aiming.UpdateFOV()
     Aiming.GetClosestPlayerToCursor()
 end)
-
-return Aiming
-
--- // Examples // --
-
---// Namecall Version // --
-
---[[
--- // Load Aiming Module
+--//
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Aiming/Module.lua"))()
 
 -- // Hook
@@ -438,11 +430,10 @@ __namecall = hookmetamethod(game, "__namecall", function(...)
     -- // Return
     return __namecall(...)
 end)
-]]--
 
 -- // Index Version // --
 
---[[
+--
 -- // Load Aiming Module
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Aiming/Module.lua"))()
 
@@ -452,7 +443,7 @@ __index = hookmetamethod(game, "__index", function(t, k)
     -- // Check if it trying to get our mouse's hit or target
     if (t:IsA("Mouse") and (k == "Hit" or k == "Target")) then
         -- // If we can use the silent aim
-        if (Aiming.Check()) then _G.SAEnabled then
+        if (Aiming.Check()) and _G.SAEnabled then
             -- // Vars
             local TargetPart = Aiming.SelectedPart
 
@@ -464,7 +455,6 @@ __index = hookmetamethod(game, "__index", function(t, k)
     -- // Return
     return __index(t, k)
 end)
-]]--
 -- // Mains
 game:GetService("UserInputService").InputBegan:connect(function(input)
 if input.KeyCode == Enum.KeyCode.V then
