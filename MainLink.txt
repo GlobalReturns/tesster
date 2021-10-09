@@ -1,4 +1,5 @@
-local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/GlobalReturns/tesster/main/Link.txt"))()
+local Aiming = loadstring(game:HttpGet("https://pastebin.com/raw/SnBTdXsz"))()
+Aiming.TeamCheck(false)
 
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
@@ -12,7 +13,7 @@ local CurrentCamera = Workspace.CurrentCamera
 local DaHoodSettings = {
     SilentAim = true,
     AimLock = false,
-    Prediction = 0.165,
+    Prediction = 0.15537,
     AimLockKeybind = Enum.KeyCode.E
 }
 getgenv().DaHoodSettings = DaHoodSettings
@@ -46,4 +47,14 @@ __index = hookmetamethod(game, "__index", function(t, k)
     end
 
     return __index(t, k)
+end)
+
+RunService:BindToRenderStep("AimLock", 0, function()
+    if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
+        local SelectedPart = Aiming.SelectedPart
+
+        local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+
+        CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
+    end
 end)
