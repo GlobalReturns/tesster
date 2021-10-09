@@ -445,6 +445,20 @@ end)
 -- // Load Aiming Module
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Aiming/Module.lua"))()
 
+local UserInputService = game:GetService("UserInputService")
+
+UserInputService.InputEnded:Connect(function(input, gameProcessed)
+    if input.UserInputType == Enum.UserInputType.Keyboard then
+        local keyPressed = input.KeyCode
+        if keyPressed.Name == 'RightBracket' then
+            AimingAimingAiming.FOV = AimingAiming.FOV + 1
+        end
+        if keyPressed.Name == 'LeftBracket' then
+            AimingAimingAiming.FOV = Aiming.FOV - 1
+        end
+    end
+end)
+
 -- // Hook
 local __index
 __index = hookmetamethod(game, "__index", function(t, k)
