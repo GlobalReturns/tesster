@@ -1,5 +1,5 @@
-_G.SAEnabled = true
 if getgenv().Aiming then return getgenv().Aiming end
+_G.SAEnabled = true
 
 -- // Services
 local Players = game:GetService("Players")
@@ -406,7 +406,15 @@ Heartbeat:Connect(function()
     Aiming.UpdateFOV()
     Aiming.GetClosestPlayerToCursor()
 end)
---//
+
+return Aiming
+
+-- // Examples // --
+
+--// Namecall Version // --
+
+--[[
+-- // Load Aiming Module
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Aiming/Module.lua"))()
 
 -- // Hook
@@ -430,8 +438,11 @@ __namecall = hookmetamethod(game, "__namecall", function(...)
     -- // Return
     return __namecall(...)
 end)
+]]--
 
 -- // Index Version // --
+
+--[[
 -- // Load Aiming Module
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Aiming/Module.lua"))()
 
@@ -453,7 +464,7 @@ __index = hookmetamethod(game, "__index", function(t, k)
     -- // Return
     return __index(t, k)
 end)
--- // Mains
+]]--
 game:GetService("UserInputService").InputBegan:connect(function(input)
 if input.KeyCode == Enum.KeyCode.V then
 _G.SAEnabled = true
