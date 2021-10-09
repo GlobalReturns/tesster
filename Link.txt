@@ -1,5 +1,5 @@
 if getgenv().Aiming then return getgenv().Aiming end
-_G.SAEnabled = true
+
 -- // Services
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
@@ -40,7 +40,7 @@ getgenv().Aiming = {
     FOVSides = 12,
     FOVColour = Color3fromRGB(231, 84, 128),
     VisibleCheck = true,
-    FOV = 10,
+    FOV = 59,
     HitChance = 100,
     Selected = LocalPlayer,
     SelectedPart = nil,
@@ -54,7 +54,7 @@ getgenv().Aiming = {
         },
         Players = {
             LocalPlayer,
-            342432803
+            91318356
         }
     }
 }
@@ -412,7 +412,7 @@ return Aiming
 
 --// Namecall Version // --
 
---]]
+--[[
 -- // Load Aiming Module
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Aiming/Module.lua"))()
 
@@ -437,11 +437,11 @@ __namecall = hookmetamethod(game, "__namecall", function(...)
     -- // Return
     return __namecall(...)
 end)
---]]
+]]--
 
 -- // Index Version // --
 
---]]
+--[[
 -- // Load Aiming Module
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Aiming/Module.lua"))()
 
@@ -451,7 +451,7 @@ __index = hookmetamethod(game, "__index", function(t, k)
     -- // Check if it trying to get our mouse's hit or target
     if (t:IsA("Mouse") and (k == "Hit" or k == "Target")) then
         -- // If we can use the silent aim
-        if (Aiming.Check()) and _G.SAEnabled
+        if (Aiming.Check()) then
             -- // Vars
             local TargetPart = Aiming.SelectedPart
 
@@ -463,27 +463,4 @@ __index = hookmetamethod(game, "__index", function(t, k)
     -- // Return
     return __index(t, k)
 end)
---]]
-game:GetService("UserInputService").InputBegan:connect(function(input)
-if input.KeyCode == Enum.KeyCode.V then
-_G.SAEnabled = true
-end
-end)
---
-game:GetService("UserInputService").InputBegan:connect(function(input)
-if input.KeyCode == Enum.KeyCode.C then
-_G.SAEnabled = false
-end
-end)
--- // Fov
-game:GetService("UserInputService").InputBegan:connect(function(input)
-if input.KeyCode == Enum.KeyCode.Minus then
-Aiming.ShowFOV = Aiming.ShowFOV == true
-end
-end)
---
-game:GetService("UserInputService").InputBegan:connect(function(input)
-if input.KeyCode == Enum.KeyCode.Equals then
-Aiming.ShowFOV = Aiming.ShowFOV == false
-end
-end)
+]]--
