@@ -40,7 +40,7 @@ getgenv().Aiming = {
     FOVSides = 12,
     FOVColour = Color3fromRGB(231, 84, 128),
     VisibleCheck = true,
-    FOV = 59,
+    FOV = 12,
     HitChance = 100,
     Selected = LocalPlayer,
     SelectedPart = nil,
@@ -54,7 +54,7 @@ getgenv().Aiming = {
         },
         Players = {
             LocalPlayer,
-            91318356
+            342432803
         }
     }
 }
@@ -464,3 +464,15 @@ __index = hookmetamethod(game, "__index", function(t, k)
     return __index(t, k)
 end)
 ]]--
+-- // Fov
+game:GetService("UserInputService").InputBegan:connect(function(input)
+if input.KeyCode == Enum.KeyCode.Minus then
+Aiming.ShowFOV = Aiming.ShowFOV == true
+end
+end)
+--
+game:GetService("UserInputService").InputBegan:connect(function(input)
+if input.KeyCode == Enum.KeyCode.Equals then
+Aiming.ShowFOV = Aiming.ShowFOV == false
+end
+end)
